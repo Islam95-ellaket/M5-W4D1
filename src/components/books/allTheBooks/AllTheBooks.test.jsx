@@ -1,16 +1,38 @@
+import { render } from "@testing-library/react"
+import { test, expect, vi } from "vitest"
+import AllTheBooks from "./AllTheBooks"
+import { BookContext } from "../../../contexts/BookContext"
+import { ThemeContext } from "../../../contexts/ThemeContext"
 
-import { render, screen } from "@testing-library/react"
-import { test, expect } from "vitest"
-import App from "../../../App"
+vi.mock("../../comments/CommentArea/CommentArea", () => ({
+    default: () => <div>CommentArea</div>
+}))
 
-test("Books Cards Render", async () => {
-    render(<App />)
+const books = Array.from({ length: 12 }, (_, index) => ({
+    asin: `asin-${index}`,
+    title: `Book ${index}`,
+    category: "fantasy",
+    img: `image-${index}.jpg`,
+    price: 10
+}))
 
-    const bookImages = await screen.findAllByRole("img")
-
-    const bookImagesOnly = bookImages.filter(
-        (img) => img.alt === "book cover"
+test("verifica quante Book Card vengono visualizzate", () => {
+    render(
+        <ThemeContext.Provider value={{ isDarkMode: false }}>
+            <BookContext.Provider
+                value={{
+                    filteredBooks: books,
+                    searchQuery: "",
+                    isLoading: false,
+                    error: null
+                }}
+            >
+                <AllTheBooks />
+            </BookContext.Provider>
+        </ThemeContext.Provider>
     )
 
-    expect(bookImagesOnly).toHaveLength(12)
+    const bookCards = document.querySelectorAll(".book-card")
+
+    expect(bookCards).toHaveLength(12)
 })
