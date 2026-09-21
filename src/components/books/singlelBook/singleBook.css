@@ -1,0 +1,51 @@
+.category-fantasy {
+    color: purple;
+}
+
+.category-history {
+    color: rgb(194, 194, 13);
+}
+
+.category-romance {
+    color: rgba(255, 105, 180, 0.7);
+}
+
+.category-scifi {
+    color: cyan;
+}
+
+.category-horror {
+    color: red;
+}
+
+
+.book-card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.shadow-fantasy:hover {
+    box-shadow: 0 8px 25px rgba(128, 0, 128, 0.7);
+}
+
+.shadow-history:hover {
+    box-shadow: 0 8px 25px rgba(255, 255, 0, 0.7);
+}
+
+.shadow-romance:hover {
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.7);
+}
+
+.shadow-scifi:hover {
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.7);
+}
+
+.shadow-horror:hover {
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.7);
+}
+
